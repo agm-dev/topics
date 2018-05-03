@@ -1,0 +1,23 @@
+service: get-topic-info
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-west-2
+  stage: prod
+functions:
+  topics:
+    handler: handler.getTopics
+    events:
+      - http:
+          path: topics
+          method: get
+  topic:
+    handler: handler.getTopic
+    events:
+      - http:
+          path: topics/{topic}
+          method: get
+          request:
+            parameters:
+              paths:
+                topic: true

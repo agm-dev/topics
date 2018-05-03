@@ -1,0 +1,23 @@
+{
+  "summer": {
+    "positive": [
+      {
+        "en": "you can go everywhere with a t-shirt, without taking with you a jacket",
+        "es": "puedes ir en manga corta a todos lados, sin tener que cargar con una chaqueta"
+      }
+    ],
+    "negative": [
+      {
+        "en": "too hot",
+        "es": "mucho calor"
+      },
+      {
+        "en": "people are in the street till late in the night, making noise under your window while you try to sleep",
+        "es": "la gente se queda en la calle hasta tarde por la noche, haciendo ruido bajo tu ventana mientras tratas de dormir"
+      }
+    ]
+  },
+  "winter": {},
+  "movidas": {},
+  "varias": {}
+}

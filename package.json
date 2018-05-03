@@ -1,0 +1,28 @@
+{
+  "name": "topics",
+  "version": "1.0.0",
+  "description": "Serverless api to get positive and negative traits about different topics",
+  "main": "handler.js",
+  "scripts": {
+    "test": "ava",
+    "dev": "nodemon --exec \"npm run test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agm-dev/topics.git"
+  },
+  "keywords": [
+    "serverless",
+    "api"
+  ],
+  "author": "Adrián Gonzalo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/agm-dev/topics/issues"
+  },
+  "homepage": "https://github.com/agm-dev/topics#readme",
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "nodemon": "^1.17.3"
+  }
+}
