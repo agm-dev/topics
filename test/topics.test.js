@@ -4,6 +4,8 @@ const {
   getTopics,
   getTopic,
   getTranslatedData,
+  getTopicPositive,
+  getTopicNegative,
 } = require('../handler');
 
 test('getTopics return a JSON with an array of available topics in data/topics.json', t => {
@@ -43,6 +45,48 @@ test('getTopic return a 404 status when topic is not found', t => {
   });
 });
 
+test('getTopicPositive returns a JSON with positive reasons array about topic, when exists', t => {
+  const topicKeys = Object.keys(topics);
+  const topic = topicKeys[0];
+  const event = { pathParameters: { topic } };
+  const data = topics[topic].positive;
+  const translatedData = getTranslatedData(data);
+  const expectedResponse = JSON.stringify(translatedData);
+  getTopicPositive(event, null, function(err, response) {
+    t.is(response.statusCode, 200);
+    t.is(response.body, expectedResponse);
+  });
+});
+
+test('getTopicNegative returns a JSON with negative reasons array about topic, when exists', t => {
+  const topicKeys = Object.keys(topics);
+  const topic = topicKeys[0];
+  const event = { pathParameters: { topic } };
+  const data = topics[topic].negative;
+  const translatedData = getTranslatedData(data);
+  const expectedResponse = JSON.stringify(translatedData);
+  getTopicNegative(event, null, function(err, response) {
+    t.is(response.statusCode, 200);
+    t.is(response.body, expectedResponse);
+  });
+});
+
 test('supports different languages', t => {
-  t.pass();
+  const topicKeys = Object.keys(topics);
+  const topic = topicKeys[0];
+  const langString = 'es-ES,es;q=0.9'; // spanish string example
+  const event = {
+    headers: {
+      "Accept-Language": langString
+    },
+    pathParameters: { topic }
+  };
+  const data = topics[topic].positive;
+
+  const translatedData = getTranslatedData(data, 'es');
+  const expectedResponse = JSON.stringify(translatedData);
+  getTopicPositive(event, null, function(err, response) {
+    t.is(response.statusCode, 200);
+    t.is(response.body, expectedResponse);
+  });
 })

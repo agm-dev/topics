@@ -27,20 +27,38 @@ module.exports.getTopic = (event, context, callback) => {
 module.exports.getTopicPositive = (event, context, callback) => {
   const topic = event.pathParameters.topic;
   const data = getSpecificDataFromTopic(topic, true);
+  let err, response;
+  [err, response] = genCallbackParams(event, data);
+  callback(err, response);
 };
 
 module.exports.getTopicNegative = (event, context, callback) => {
   const topic = event.pathParameters.topic;
   const data = getSpecificDataFromTopic(topic, false);
-
+  let err, response;
+  [err, response] = genCallbackParams(event, data);
+  callback(err, response);
 }
 
 // privated functions:
 
 const getSpecificDataFromTopic = (topic = null, positive = true) => {
-  if (topic === null) return null;
-
+  if (topic === null) return [];
+  const key = positive === false ? 'negative' : 'positive';
+  if (typeof topicsData[topic] !== 'undefined' && Array.isArray(topicsData[topic][key])) return topicsData[topic][key];
+  return [];
 };
+
+const genCallbackParams = (event, data) => {
+  const lang = getLangCode(event);
+  const translatedData = data.length ? getTranslatedData(data, lang) : data;
+  const err = translatedData.length ? null : 404;
+  const response = {
+    statusCode: err !== null ? err : 200,
+    body: JSON.stringify(translatedData),
+  }
+  return [err, response];
+}
 
 const getLangCode = (event) => {
   // event.headers.Accept-Language format example: es-ES,es;q=0.9
@@ -72,7 +90,7 @@ const getLangCode = (event) => {
 const getTranslatedData = (data = null, lang = 'en') => {
   // check if is topic object, or positive/negative array
   if (Array.isArray(data)) { // is an array, positive/negative data about a topic
-    return getTranslatedReasons(data);
+    return getTranslatedReasons(data, lang);
   } else if (typeof data.positive !== 'undefined' && typeof data.negative !== 'undefined') { // its topic whole object data
     const positive = getTranslatedReasons(data.positive, lang);
     const negative = getTranslatedReasons(data.negative, lang);
@@ -83,7 +101,7 @@ const getTranslatedData = (data = null, lang = 'en') => {
 
 module.exports.getTranslatedData = getTranslatedData; // export for testing
 
-const getTranslatedReasons = (data, lang) => data.reduce((total, current, index) => {
+const getTranslatedReasons = (data, lang) => data.reduce((total, current) => {
   if (typeof current[lang] === 'string') return [...total, current[lang]];
   return total;
 }, []);

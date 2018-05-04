@@ -1,2 +1,4 @@
-# topics
-Serverless api to get positive and negative traits about different topics
+# Topics
+Serverless api to get positive and negative traits about different topics.
+
+

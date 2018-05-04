@@ -21,3 +21,23 @@ functions:
             parameters:
               paths:
                 topic: true
+  topic-positive:
+    handler: handler.getTopicPositive
+    events:
+      - http:
+          path: topics/{topic}/positive
+          method: get
+          request:
+            parameters:
+              paths:
+                topic: true
+  topic-negative:
+    handler: handler.getTopicNegative
+    events:
+      - http:
+          path: topics/{topic}/negative
+          method: get
+          request:
+            parameters:
+              paths:
+                topic: true
