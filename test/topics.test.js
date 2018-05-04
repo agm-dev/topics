@@ -3,6 +3,7 @@ const topics = require('../data/topics.json');
 const {
   getTopics,
   getTopic,
+  getTranslatedData,
 } = require('../handler');
 
 test('getTopics return a JSON with an array of available topics in data/topics.json', t => {
@@ -19,7 +20,8 @@ test('getTopic return a JSON with topic info when exists', t => {
   const event = {
     pathParameters: { topic }
   }
-  const expectedResponse = JSON.stringify(topics[topic]);
+  const translatedData = getTranslatedData(topics[topic]);
+  const expectedResponse = JSON.stringify(translatedData);
   getTopic(event, null, function(err, response) {
     t.is(response.statusCode, 200);
     t.is(response.body, expectedResponse);
@@ -40,3 +42,7 @@ test('getTopic return a 404 status when topic is not found', t => {
     t.is(response.body, expectedResponse);
   });
 });
+
+test('supports different languages', t => {
+  t.pass();
+})
