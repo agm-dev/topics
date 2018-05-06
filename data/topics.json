@@ -4,6 +4,22 @@
       {
         "en": "you can go everywhere with a t-shirt, without taking with you a jacket",
         "es": "puedes ir en manga corta a todos lados, sin tener que cargar con una chaqueta"
+      },
+      {
+        "en": "muchas horas de luz solar",
+        "es": "plenty hours of sun light"
+      },
+      {
+        "en": "ice-creams time!",
+        "es": "es época de helados"
+      },
+      {
+        "en": "cold beer tastes much better",
+        "es": "la cerveza fría sabe mucho mejor"
+      },
+      {
+        "en": "streets and locales full of life",
+        "es": "las calles y los locales se llenan de vida"
       }
     ],
     "negative": [
@@ -17,7 +33,50 @@
       }
     ]
   },
-  "winter": {},
-  "movidas": {},
-  "varias": {}
+  "social-networking": {
+    "positive": [
+      {
+        "en": "ability to connect to other people all over the world",
+        "es": "capacidad de conectar con otra gente alrededor de todo el mundo"
+      },
+      {
+        "en": "easy and instant communication",
+        "es": "comunicación sencilla e instantánea"
+      },
+      {
+        "en": "real-time news and information discovery",
+        "es": "información y noticias en tiempo real"
+      },
+      {
+        "en": "great opportunities for bussiness owners",
+        "es": "grandes oportunidades para empresarios"
+      }
+    ],
+    "negative": [
+      {
+        "en": "information overwhelm",
+        "es": "demasiada información disponible"
+      },
+      {
+        "en": "privacy issues",
+        "es": "problemas con la privacidad"
+      },
+      {
+        "en": "social peer preassure and cyber bullying",
+        "es": "presión social y ciberacoso"
+      },
+      {
+        "en": "online interaction substitution for offline interaction",
+        "es": "la interacción online sustituyendo a la interacción offline"
+      },
+      {
+        "en": "distraction and procrastination",
+        "es": "distracciones y procrastinación"
+      },
+      {
+        "en": "sedentary lifestyle habits and sleep disruption",
+        "es": "estilo de vida sedentario y disrrupción del sueño"
+      }
+    ]
+  }
 }
